@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text,View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font'
 import {AppLoading} from 'expo'
 import CategoriesScreen from './screens/CategoriesScreen'
@@ -22,22 +22,16 @@ export default function App() {
         onError = {(err)=>console.log (err)}/>
     )
   }
-
-  return (
+  
+  return ( 
     <View style = {styles.screen}>
       <CategoriesScreen />
-      <Text> HELLO FROM REACT NATIVE</Text>
-      <Text> HELLO FROM REACT NATIVE</Text>
-      <Text> HELLO FROM REACT NATIVE</Text>
-      <FavoritesScreen />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   screen: {
-    flexDirection: 'column',
-    justifyContent: "space-between",
-    flex: 1
+    flex: 1,
   }
 })
