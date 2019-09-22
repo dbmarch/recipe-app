@@ -2,15 +2,15 @@ import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 
 
-const FiltersScreen = props => {
-return <View>
-   <Text style= {styles.screen}>
-      The Filters Screen
+const CategoryMealScreen = props => {
+return <View style = {styles.screen}> />
+   <Text >
+      The Category Meal Screen
    </Text>
 </View>
 }
 
-const styles = StyleSheet.Create({
+const styles = StyleSheet.create({
    screen: {
       flex: 1,
       justifyContent: 'center',
@@ -19,4 +19,4 @@ const styles = StyleSheet.Create({
 })
 
 
-export default FiltersScreen
+export default CategoryMealScreen

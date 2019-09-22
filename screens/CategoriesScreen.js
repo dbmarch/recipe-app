@@ -3,17 +3,16 @@ import {View, Text, StyleSheet} from 'react-native'
 
 
 const CategoriesScreen = props => {
-return <View>
-   <Text style= {styles.screen}>
-      The Categories  Screen
+return (
+<View style = {styles.screen}> />
+   <Text >
+      The Categories Screen
    </Text>
-</View>
+</View>)
 }
 
-const styles = StyleSheet.Create({
+const styles = StyleSheet.create({
    screen: {
-      flex: 1,
-      justifyContent: 'center',
       alignItems: 'center'
    }
 })
