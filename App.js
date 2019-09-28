@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font'
 import {AppLoading} from 'expo'
-import CategoriesScreen from './screens/CategoriesScreen'
-import FavoritesScreen from './screens/FavoritesScreen'
+import MealsNavigator from './navigation/MealsNavigator'
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -22,12 +21,8 @@ export default function App() {
         onError = {(err)=>console.log (err)}/>
     )
   }
+  return <MealsNavigator />
   
-  return ( 
-    <View style = {styles.screen}>
-      <CategoriesScreen />
-    </View>
-  )
 }
 
 const styles = StyleSheet.create({
