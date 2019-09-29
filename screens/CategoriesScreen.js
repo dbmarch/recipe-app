@@ -10,8 +10,10 @@ return (
    <Text >The Categories Screen</Text>
    <Text> Hi </Text>
    <Button title = 'Go To Meals' onPress={()=>{
-         props.navigation.navigate({routeName: 'CategoryMeals'})
+          props.navigation.navigate({routeName: 'CategoryMeals'})
+          //props.navigation.push('Categories')   // push lets you visit the current screen as well ( to show different content)
       }} />
+   <Button title = 'replace' onPress={()=>{props.navigation.replace('MealDetailsScreen')}} />
 </View>)
 }
 

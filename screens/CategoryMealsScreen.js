@@ -7,7 +7,9 @@ return <View style = {styles.screen}>
    <Text >
       The Category Meal Screen
    </Text>
-   <Button title='Details' onPress={()=>{props.navigation.navigate('MealDetailsScreen')}} />
+   <Button title='Details' onPress={()=>{props.navigation.navigate('MealDetailsScreen')}}/>
+   <Button title='Back' onPress={()=>{props.navigation.goBack()} // Or use pop
+   }/>  
 </View>
 }
 
