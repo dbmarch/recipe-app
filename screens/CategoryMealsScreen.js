@@ -1,16 +1,32 @@
 import React from 'react'
 import {View, Text, StyleSheet, Button} from 'react-native'
+import {CATEGORIES } from '../data/dummy-data'
+import Colors from '../constants/Colors'
 
 
 const CategoryMealsScreen = props => {
-return <View style = {styles.screen}>
-   <Text >
-      The Category Meal Screen
-   </Text>
-   <Button title='Details' onPress={()=>{props.navigation.navigate('MealDetailsScreen')}}/>
-   <Button title='Back' onPress={()=>{props.navigation.goBack()} // Or use pop
-   }/>  
-</View>
+  const catId = props.navigation.getParam('categoryId')
+  const selectedCategory = CATEGORIES.find(cat => catId === cat.id)
+  return <View style = {styles.screen}>
+    <Text >
+       The Category Meal Screen
+    </Text>
+    <Text>{selectedCategory.title}</Text>
+    <Button title='Details' onPress={()=>{props.navigation.navigate('MealDetailsScreen')}}/>
+  </View>
+}
+
+CategoryMealsScreen.navigationOptions = (navigationData) => {
+  const catId = navigationData.navigation.getParam('categoryId')
+  const selectedCategory = CATEGORIES.find(cat => catId === cat.id)
+
+  return {
+    headerTitle: selectedCategory.title,
+    headerStyle: {
+      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+    },
+    headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
+  }
 }
 
 const styles = StyleSheet.create({
