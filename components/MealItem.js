@@ -7,13 +7,16 @@ const MealItem = ({item, onSelectMeals}) => {
     <View style = {styles.mealItem}>
       <TouchableOpacity onPress = {onSelectMeals}>
         <View >
-          <View style={styles.mealRow}>
+          <View style={{...styles.mealRow, ...styles.mealHeader}}>
             <Text>{item.title}</Text>
           </View>
-          <View style = {styles.mealRow}>
-            {item.ingredients.map(ingredient => (
+          <View style = {{...styles.mealRow , ...styles.mealDetails}}>
+            <Text>{item.duration}m</Text>
+            <Text>{item.complexity.toUpperCase()}</Text>
+            <Text>{item.affordability.toUpperCase()}</Text>
+            {/* {item.ingredients.map(ingredient => (
               <Text>{ingredient}</Text>
-            ))}
+            ))} */}
           </View>
         </View>
       </TouchableOpacity>
@@ -22,6 +25,13 @@ const MealItem = ({item, onSelectMeals}) => {
 }
 
 const styles = StyleSheet.create({
+  mealHeader: {
+    height: '90%'
+  },
+  mealDetails: {
+    paddingHorizontal: 10,
+    justifyContent: 'space-between',
+  },
   mealItem: {
     height: 200,
     width: '100%',
