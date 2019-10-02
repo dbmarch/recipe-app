@@ -8,14 +8,14 @@ const CategoryGridTile = ({title, color, onSelect}) => {
     TouchableCmp = TouchableNativeFeedback
   }
   return (
-    <View       style={styles.gridItem}>
-    <TouchableCmp style = {{flex: 1}}
-      onPress = {onSelect}>
-      <View 
-        style={{...styles.container, ...{ backgroundColor: color} }} >
-        <Text style = {styles.title} numberOfLines={2}>{title}</Text>
-      </View>
-  </TouchableCmp>
+    <View style={styles.gridItem}>
+         <TouchableCmp style = {{flex: 1}}
+          onPress = {onSelect}>
+          <View 
+            style={{...styles.container, ...{ backgroundColor: color} }} >
+            <Text style = {styles.title} numberOfLines={2}>{title}</Text>
+          </View>
+        </TouchableCmp>
   </View>
   )
 }
@@ -26,14 +26,15 @@ const styles = StyleSheet.create({
      margin: 15,
      height: 150,
      borderRadius: 10,
-     overflow: 'hidden'
+     overflow: Platform.OS === 'android' && Platform.version >= 21 ? 'hidden' : 'visible',
+     elevation: 15,
   },
   container: {
     flex: 1,
     borderRadius: 10,
     shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.36,
+    shadowOffset: {width: 1, height: 5},
     shadowRadius: 10,
     elevation: 3,
     padding: 15,
