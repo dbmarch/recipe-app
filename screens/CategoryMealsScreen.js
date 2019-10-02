@@ -8,9 +8,18 @@ const CategoryMealsScreen = props => {
   const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(catId) >= 0)
 
   const renderMealItem = itemData => {
-    console.log (itemData)
     return (
-     <MealItem item={itemData.item} onSelectMeals = {()=>{console.log('MEAL ITEM')}}/>
+     <MealItem 
+      item={itemData.item} 
+      onSelectMeals = {()=>{
+        props.navigation.navigate({
+          routeName: 'MealDetailsScreen',
+          params: {
+            id: itemData.item.id,
+          }
+          })
+        }}
+      />
     )
   }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native'
-import { setRecoveryProps } from 'expo/build/ErrorRecovery/ErrorRecovery'
 
 
 const MealItem = ({item, onSelectMeals}) => {
@@ -43,13 +42,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     justifyContent: 'space-between',
     height: '15%',
-    overflow: 'hidden'
   },
   mealItem: {
     height: 200,
     width: '100%',
     backroundColor: '#f5f5f5',
     borderRadius: 10,
+    overflow: 'hidden'
   },
   mealRow: {
     flexDirection: 'row',
