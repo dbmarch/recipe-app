@@ -2,6 +2,7 @@ import React from 'react'
 import {Platform} from 'react-native'
 import {createStackNavigator } from 'react-navigation-stack'
 import {createBottomTabNavigator} from 'react-navigation-tabs'
+import {createDrawerNavigator} from 'react-navigation-drawer'
 import {Ionicons} from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
@@ -10,6 +11,7 @@ import CategoriesScreen from '../screens/CategoriesScreen'
 import CategoryMealsScreen from '../screens/CategoryMealsScreen'
 import MealDetailsScreen from '../screens/MealDetailScreen'
 import FavoritesScreen from '../screens/FavoritesScreen'
+import FiltersScreen from '../screens/FiltersScreen'
 import Colors from '../constants/Colors'
 import MealDetailScreen from '../screens/MealDetailScreen'
 
@@ -45,9 +47,6 @@ const FavoritesNavigator = createStackNavigator ({
   }
 )
 
-FavoritesScreen.navigationOptions = {
-  headerTitle: 'Your Favorites'
-}
 
 
 const tabScreenConfig = {
@@ -64,7 +63,7 @@ const tabScreenConfig = {
     Favorites: {
       screen:FavoritesNavigator,
       navigationOptions: {
-        tabBarLabel: 'Favorites!!!',
+        tabBarLabel: 'Favorites',
         tabBarColor: Colors.accentColor,
         tabBarIcon: (tabInfo)=>{
           return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor}/>
@@ -90,4 +89,26 @@ const MealsFavTabNavigator = Platform.OS === 'android' ?
   }
 })
 
-export default createAppContainer(MealsFavTabNavigator)                                             
+const FiltersNavigator = createStackNavigator ({
+  Filter: FiltersScreen,
+}, {
+  initialRouteName: 'Filter',
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+    },
+    headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
+    }
+  }
+)
+
+FiltersScreen.navigationOptions = {
+  headerTitle: 'Find Meals'
+}
+
+const MainNavigator = createDrawerNavigator({
+  MealFavs: MealsFavTabNavigator,
+  Filters:  FiltersNavigator
+})
+
+export default createAppContainer(MainNavigator)                                             
