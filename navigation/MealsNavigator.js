@@ -11,6 +11,7 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen'
 import MealDetailsScreen from '../screens/MealDetailScreen'
 import FavoritesScreen from '../screens/FavoritesScreen'
 import Colors from '../constants/Colors'
+import MealDetailScreen from '../screens/MealDetailScreen'
 
 // you can set up navigation options right in the object describing the screen
 const MealsNavigator = createStackNavigator ({
@@ -30,6 +31,24 @@ const MealsNavigator = createStackNavigator ({
   }
 )
 
+const FavoritesNavigator = createStackNavigator ({
+  Favorites: FavoritesScreen,
+  MealDetail: MealDetailScreen
+}, {
+  initialRouteName: 'Favorites',
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+    },
+    headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
+    }
+  }
+
+
+
+)
+
+
 const tabScreenConfig = {
     Meals: {
       screen: MealsNavigator,
@@ -42,7 +61,7 @@ const tabScreenConfig = {
       }
     },
     Favorites: {
-      screen:FavoritesScreen,
+      screen:FavoritesNavigator,
       navigationOptions: {
         tabBarLabel: 'Favorites!!!',
         tabBarColor: Colors.accentColor,
