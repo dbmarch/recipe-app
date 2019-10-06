@@ -32,12 +32,21 @@ const MealsFavTabNavigator = createBottomTabNavigator({
   Meals: {
     screen: MealsNavigator,
     navigationOptions: {
+      tabBarLabel: 'Meals',
       tabBarIcon: (tabInfo)=>{
         return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor}/>
       }
     }
   },
-  Favorites: FavoritesScreen
+  Favorites: {
+    screen:FavoritesScreen,
+    navigationOptions: {
+      tabBarLabel: 'Favorites',
+      tabBarIcon: (tabInfo)=>{
+        return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor}/>
+      }
+    }
+  }
 }, {
   tabBarOptions: {
     activeTintColor: Colors.accentColor,
