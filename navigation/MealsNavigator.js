@@ -102,10 +102,6 @@ const FiltersNavigator = createStackNavigator ({
   }
 )
 
-FiltersScreen.navigationOptions = {
-  headerTitle: 'Find Meals'
-}
-
 const MainNavigator = createDrawerNavigator({
   MealFavs: MealsFavTabNavigator,
   Filters:  FiltersNavigator
