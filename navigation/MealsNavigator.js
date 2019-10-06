@@ -43,10 +43,11 @@ const FavoritesNavigator = createStackNavigator ({
     headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
     }
   }
-
-
-
 )
+
+FavoritesScreen.navigationOptions = {
+  headerTitle: 'Your Favorites'
+}
 
 
 const tabScreenConfig = {
