@@ -1,5 +1,5 @@
 import React from 'react'
-import {Platform} from 'react-native'
+import {Platform, Text} from 'react-native'
 import {createStackNavigator } from 'react-navigation-stack'
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 import {createDrawerNavigator} from 'react-navigation-drawer'
@@ -18,6 +18,12 @@ import MealDetailScreen from '../screens/MealDetailScreen'
 const defaultStackNavigationOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+  },
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold',
+  },
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans'
   },
   headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
   }
@@ -49,7 +55,7 @@ const tabScreenConfig = {
     Meals: {
       screen: MealsNavigator,
       navigationOptions: {
-        tabBarLabel: 'Meals',
+        tabBarLabel: <Text style = {{fontFamily: 'open-sans-bold'}}>Meals</Text>,
         tabBarColor: Colors.primaryColor,
         tabBarIcon: (tabInfo)=>{
           return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor}/>
@@ -59,7 +65,7 @@ const tabScreenConfig = {
     Favorites: {
       screen:FavoritesNavigator,
       navigationOptions: {
-        tabBarLabel: 'Favorites',
+        tabBarLabel: <Text style = {{fontFamily: 'open-sans-bold'}}>Favorites</Text>,
         tabBarColor: Colors.accentColor,
         tabBarIcon: (tabInfo)=>{
           return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor}/>
@@ -74,7 +80,7 @@ const MealsFavTabNavigator = Platform.OS === 'android' ?
   activeColor: 'white',
   shifting: true,
   barStyle: {
-    
+    backgroundColor: Colors.primaryColor,
   }
   }
  ) : createBottomTabNavigator(
@@ -82,6 +88,9 @@ const MealsFavTabNavigator = Platform.OS === 'android' ?
   {
   tabBarOptions: {
     activeTintColor: Colors.accentColor,
+    labelStyle: {
+      fontFamily: 'open-sans-bold'
+    }
   }
 })
 
@@ -104,6 +113,13 @@ const MainNavigator = createDrawerNavigator({
    navigationOptions: {
      drawerLabel: 'Search'
    }
+  }
+},{
+  contentOptions: {
+    activeTintColor: Colors.accentColor,
+    labelsStyle: {
+      fontFamily: 'open-sans-bold',
+    }
   }
 })
 
