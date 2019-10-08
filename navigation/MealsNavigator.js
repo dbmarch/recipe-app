@@ -55,7 +55,7 @@ const tabScreenConfig = {
     Meals: {
       screen: MealsNavigator,
       navigationOptions: {
-        tabBarLabel: <Text style = {{fontFamily: 'open-sans-bold'}}>Meals</Text>,
+        tabBarLabel: Platform.OS === 'android' ? <Text style = {{fontFamily: 'open-sans-bold'}}>Meals</Text> : 'Meals',
         tabBarColor: Colors.primaryColor,
         tabBarIcon: (tabInfo)=>{
           return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor}/>
@@ -65,7 +65,7 @@ const tabScreenConfig = {
     Favorites: {
       screen:FavoritesNavigator,
       navigationOptions: {
-        tabBarLabel: <Text style = {{fontFamily: 'open-sans-bold'}}>Favorites</Text>,
+        tabBarLabel:  Platform.OS === 'android' ? <Text style = {{fontFamily: 'open-sans-bold'}}>Favorites</Text> : 'Favorites',
         tabBarColor: Colors.accentColor,
         tabBarIcon: (tabInfo)=>{
           return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor}/>

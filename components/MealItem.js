@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native'
-
+import DefaultText from './DefaultText'
 
 const MealItem = ({item, onSelectMeals}) => {
   return (
@@ -15,12 +15,9 @@ const MealItem = ({item, onSelectMeals}) => {
             </ImageBackground>
           </View>
           <View style = {{...styles.mealRow , ...styles.mealDetails}}>
-            <Text>{item.duration}m</Text>
-            <Text>{item.complexity.toUpperCase()}</Text>
-            <Text>{item.affordability.toUpperCase()}</Text>
-            {/* {item.ingredients.map(ingredient => (
-              <Text>{ingredient}</Text>
-            ))} */}
+            <DefaultText>{item.duration}m</DefaultText>
+            <DefaultText>{item.complexity.toUpperCase()}</DefaultText>
+            <DefaultText>{item.affordability.toUpperCase()}</DefaultText>
           </View>
         </View>
       </TouchableOpacity>
