@@ -15,6 +15,14 @@ import FiltersScreen from '../screens/FiltersScreen'
 import Colors from '../constants/Colors'
 import MealDetailScreen from '../screens/MealDetailScreen'
 
+const defaultStackNavigationOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+  },
+  headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
+  }
+
+
 // you can set up navigation options right in the object describing the screen
 const MealsNavigator = createStackNavigator ({
   Categories: CategoriesScreen,
@@ -24,28 +32,16 @@ const MealsNavigator = createStackNavigator ({
   MealDetailsScreen: MealDetailsScreen
 }, {
   initialRouteName: 'Categories',
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
-    },
-    headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
-    }
-  }
-)
+  defaultNavigationOptions: defaultStackNavigationOptions
+})
 
 const FavoritesNavigator = createStackNavigator ({
   Favorites: FavoritesScreen,
   MealDetail: MealDetailScreen
 }, {
   initialRouteName: 'Favorites',
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
-    },
-    headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
-    }
-  }
-)
+  defaultNavigationOptions: defaultStackNavigationOptions
+})
 
 
 
@@ -93,18 +89,22 @@ const FiltersNavigator = createStackNavigator ({
   Filter: FiltersScreen,
 }, {
   initialRouteName: 'Filter',
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
-    },
-    headerTintColor:  Platform.OS === 'android' ? 'white' : Colors.primaryColor
-    }
-  }
-)
+  defaultNavigationOptions: defaultStackNavigationOptions
+})
 
 const MainNavigator = createDrawerNavigator({
-  MealFavs: MealsFavTabNavigator,
-  Filters:  FiltersNavigator
+  MealFavs: {
+    screen: MealsFavTabNavigator,
+    navigationOptions: {
+      drawerLabel: 'Meals'
+    }
+  },
+  Filters:  {
+   screen: FiltersNavigator,
+   navigationOptions: {
+     drawerLabel: 'Search'
+   }
+  }
 })
 
 export default createAppContainer(MainNavigator)                                             
