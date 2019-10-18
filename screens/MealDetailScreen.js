@@ -5,6 +5,12 @@ import {MEALS} from '../data/dummy-data'
 import HeaderButton from '../components/HeaderButton'
 import DefaultText from '../components/DefaultText'
 
+const ListItem = props => {
+   return <View style = {styles.listItem}>
+      <DefaultText>{props.children}</DefaultText>
+   </View>
+}
+
 
 const MealDetailScreen = (props) => {
    const id = props.navigation.getParam('id')
@@ -20,11 +26,11 @@ return(
       
       <Text style = {styles.title}>Ingredients </Text>
       {
-         selectedMeal.ingredients.map(ing => <Text>{ing}</Text>)
+         selectedMeal.ingredients.map(ing => <ListItem key={ing}>{ing}</ListItem>)
       }
       <Text style = {styles.title}>Steps </Text>
       {
-         selectedMeal.steps.map(step => <Text>{step}</Text>)
+         selectedMeal.steps.map((step,index) => <ListItem key={step}>{index+1}) {step}</ListItem>)
       }
    </ScrollView>
 ) 
@@ -55,7 +61,14 @@ const styles = StyleSheet.create({
    },
    title: {
       fontFamily: 'open-sans-bold',
-      marginTop: 20
+      marginVertical: 10
+   },
+   listItem: {
+      marginVertical: 5,
+      marginHorizontal: 20,
+      // borderColor: '#ccc',
+      // borderWidth: 1,
+      padding: 5
    }
 })
 
