@@ -1,21 +1,33 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button} from 'react-native'
+import {View, Text, Image, StyleSheet, Button, ScrollView} from 'react-native'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import {MEALS} from '../data/dummy-data'
 import HeaderButton from '../components/HeaderButton'
+import DefaultText from '../components/DefaultText'
 
 
 const MealDetailScreen = (props) => {
    const id = props.navigation.getParam('id')
    const selectedMeal = MEALS.find(meal=>meal.id === id)
-   console.info (selectedMeal)
-return <View  style= {styles.screen}>
-   <Text>
-      The Meal Detail Screen
-   </Text>
-   <Text>{selectedMeal.title}</Text>
-   <Button title='Home' onPress={()=>{props.navigation.popToTop()}}/>
-</View>
+return(
+   <ScrollView>
+      <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}/>
+      <View style = {styles.details}>
+            <DefaultText>{selectedMeal.duration}m</DefaultText>
+            <DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>
+            <DefaultText>{selectedMeal.affordability.toUpperCase()}</DefaultText>
+      </View>
+      
+      <Text style = {styles.title}>Ingredients </Text>
+      {
+         selectedMeal.ingredients.map(ing => <Text>{ing}</Text>)
+      }
+      <Text style = {styles.title}>Steps </Text>
+      {
+         selectedMeal.steps.map(step => <Text>{step}</Text>)
+      }
+   </ScrollView>
+) 
 }
 
 MealDetailScreen.navigationOptions = (navigationData) => {
@@ -32,10 +44,18 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 }
 
 const styles = StyleSheet.create({
-   screen: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
+   details: {
+      flexDirection: 'row',
+      padding: 15,
+      justifyContent: 'space-around'
+   },
+   image: {
+      width: '100%',
+      height: 200,
+   },
+   title: {
+      fontFamily: 'open-sans-bold',
+      marginTop: 20
    }
 })
 
