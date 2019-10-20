@@ -13,6 +13,7 @@ const MealList = ({data, navigation}) =>{
           routeName: 'MealDetailsScreen',
           params: {
             id: itemData.item.id,
+            mealTitle: itemData.item.title
           }
           })
         }}
