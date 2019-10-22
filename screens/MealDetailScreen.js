@@ -1,9 +1,11 @@
-import React, {useEffect}from 'react'
+import React, {useEffect, useCallback }from 'react'
+import {useDispatch} from 'react-redux'
 import {View, Text, Image, StyleSheet, Button, ScrollView} from 'react-native'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import {useSelector} from 'react-redux'
 import HeaderButton from '../components/HeaderButton'
 import DefaultText from '../components/DefaultText'
+import {toggleFavorite} from '../store/actions/meals'
 
 const ListItem = props => {
    return <View style = {styles.listItem}>
@@ -12,13 +14,19 @@ const ListItem = props => {
 }
 
 const MealDetailScreen = (props) => {
-   const id = props.navigation.getParam('id')
+   const mealId = props.navigation.getParam('id')
    const availableMeals  = useSelector(state => state.meals.meals)
-   const selectedMeal = availableMeals.find(meal=>meal.id === id)
+   const selectedMeal = availableMeals.find(meal=>meal.id === mealId)
+   const dispatch = useDispatch()
    
-   // useEffect(()=>{
-   //    props.navigation.setParams({mealTitle: selectedMeal.title})
-   // }, [selectedMeal])
+   const toggleFavoriteHandler = useCallback(() => {
+      console.info ('calling dispatch')
+      dispatch(toggleFavorite(mealId))
+   },[dispatch])
+
+   useEffect(()=>{
+      props.navigation.setParams({toggleFavorite: toggleFavoriteHandler})
+   }, [selectedMeal])
    
 return(
    <ScrollView>
@@ -44,12 +52,13 @@ return(
 MealDetailScreen.navigationOptions = (navigationData) => {
    const id = navigationData.navigation.getParam('id')
    const title = navigationData.navigation.getParam('mealTitle')
-   
+   const toggleFavoriteHandler = navigationData.navigation.getParam('toggleFavorite')
    return {
       headerTitle: title,
       headerRight: <HeaderButtons HeaderButtonComponent = {HeaderButton}>
          <Item title = 'Favorite' iconName='ios-star' onPress={()=>{
-            console.info('Mark as Favorite')}}/>
+            toggleFavoriteHandler()
+            console.info('Mark as Favorite!')}}/>
          </HeaderButtons>
    }
 }
